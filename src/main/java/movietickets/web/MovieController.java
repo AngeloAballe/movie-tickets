@@ -1,6 +1,6 @@
 package movietickets.web;
 
-import movietickets.domain.model.MovieJpaRepository;
+import movietickets.application.MovieApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MovieController {
     public static final String PATH = "movie";
 
-    private MovieJpaRepository movieJpaRepository;
+    private MovieApplicationService movieApplicationService;
 
     @Autowired
-    public MovieController(MovieJpaRepository movieJpaRepository) {
-        this.movieJpaRepository = movieJpaRepository;
+    public MovieController(MovieApplicationService movieApplicationService) {
+        this.movieApplicationService = movieApplicationService;
     }
-
 }

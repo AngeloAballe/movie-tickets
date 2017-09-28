@@ -2,6 +2,7 @@ package movietickets.application;
 
 import movietickets.domain.model.Cinema;
 import movietickets.domain.model.CinemaJpaRepository;
+import movietickets.domain.model.Movie;
 import movietickets.domain.model.MovieJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,5 +36,15 @@ public class MovieApplicationServiceImpl implements MovieApplicationService {
     @Override
     public void addCinema(Cinema cinema) {
         cinemaJpaRepository.insert(cinema);
+    }
+
+    @Override
+    public List<Movie> findAllMovie() {
+        return movieJpaRepository.findAll();
+    }
+
+    @Override
+    public void addMovie(Movie movie) {
+        movieJpaRepository.insert(movie);
     }
 }

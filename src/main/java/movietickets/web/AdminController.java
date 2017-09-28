@@ -38,6 +38,7 @@ public class AdminController {
     @RequestMapping(method=GET)
     public String index(Model model) {
         model.addAttribute("cinemas", movieApplicationService.findAllCinema());
+        model.addAttribute("movies", movieApplicationService.findAllMovie());
         return PATH + "/index";
     }
 

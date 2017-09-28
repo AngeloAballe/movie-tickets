@@ -1,7 +1,9 @@
 package movietickets;
 
+import movietickets.application.MovieApplicationService;
 import movietickets.domain.model.Cinema;
 import movietickets.domain.model.CinemaJpaRepository;
+import movietickets.domain.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +22,8 @@ import java.util.ArrayList;
 public class MovieTicketApplication implements CommandLineRunner {
 
     @Autowired
-    CinemaJpaRepository cinemaJpaRepository;
+    MovieApplicationService movieApplicationService;
+
 
     public static void main(String[] args) {
         SpringApplication.run(MovieTicketApplication.class, args);
@@ -39,6 +42,10 @@ public class MovieTicketApplication implements CommandLineRunner {
 
         Cinema cinema = new Cinema(seats);
 
-        cinemaJpaRepository.insert(cinema);
+        movieApplicationService.addCinema(cinema);
+
+        Movie movie = new Movie("Inception", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cupiditate explicabo molestiae molestias natus nemo nobis, odit. Accusantium consectetur, culpa dolorem doloribus ducimus fugit harum, impedit inventore, maiores provident voluptatum.");
+
+        movieApplicationService.addMovie(movie);
     }
 }
