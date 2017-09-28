@@ -3,7 +3,6 @@ package movietickets.domain.model;
 import javax.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static javax.persistence.GenerationType.AUTO;
 
