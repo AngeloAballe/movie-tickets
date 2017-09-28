@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
@@ -35,29 +36,5 @@ public class AdminController {
         model.addAttribute("cinemas", movieApplicationService.findAllCinema());
         model.addAttribute("movies", movieApplicationService.findAllMovie());
         return PATH + "/index";
-    }
-
-    @RequestMapping(method=GET, path = "/createCinema")
-    public String createCinema(Model model) {
-        return PATH + "/add";
-    }
-
-    @RequestMapping(method=POST, path = "/createCinema")
-    public String saveCinema(@ModelAttribute("cinema") Cinema cinema, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return PATH + "/add";
-        }
-
-        movieApplicationService.addCinema(cinema);
-        return "redirect:/" + PATH;
-    }
-
-    @ModelAttribute("cinema")
-    protected Cinema newCinema() {
-        boolean[][] seat = new boolean[10][10];
-        for (boolean[] row: seat)
-            Arrays.fill(row, true);
-
-        return new Cinema(seat);
     }
 }

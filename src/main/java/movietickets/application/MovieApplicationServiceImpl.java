@@ -29,6 +29,12 @@ public class MovieApplicationServiceImpl implements MovieApplicationService {
 
     @Transactional(readOnly=true)
     @Override
+    public Cinema findCinemaById(String id) {
+        return cinemaJpaRepository.findById(id);
+    }
+
+    @Transactional(readOnly=true)
+    @Override
     public List<Cinema> findAllCinema() {
         return cinemaJpaRepository.findAll();
     }
@@ -38,6 +44,17 @@ public class MovieApplicationServiceImpl implements MovieApplicationService {
         cinemaJpaRepository.insert(cinema);
     }
 
+    @Override
+    public void updateCinema(Cinema cinema) {
+        cinemaJpaRepository.update(cinema);
+    }
+
+    @Override
+    public void deleteCinema(Cinema cinema) {
+        cinemaJpaRepository.delete(cinema);
+    }
+
+    @Transactional(readOnly=true)
     @Override
     public List<Movie> findAllMovie() {
         return movieJpaRepository.findAll();

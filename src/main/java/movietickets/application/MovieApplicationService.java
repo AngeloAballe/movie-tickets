@@ -9,9 +9,15 @@ import java.util.List;
  * Created by zeus on 9/29/17.
  */
 public interface MovieApplicationService {
+    Cinema findCinemaById(String id);
+
     List<Cinema> findAllCinema();
 
     void addCinema(Cinema cinema);
+
+    void updateCinema(Cinema cinema);
+
+    void deleteCinema(Cinema cinema);
 
     List<Movie> findAllMovie();
 

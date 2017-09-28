@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="cinema/add" extends="standardLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="main" value="/WEB-INF/views/cinema/add.jsp" />
+		<put-attribute name="navigationTab" value="admin" />
+	</definition>
+
+	<definition name="cinema/edit" extends="standardLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="main" value="/WEB-INF/views/cinema/edit.jsp" />
+		<put-attribute name="navigationTab" value="admin" />
+	</definition>
+
+</tiles-definitions>

@@ -19,8 +19,8 @@ public class CinemaJpaRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    public Cinema findById(Long id) {
-        return entityManager.find(Cinema.class, id);
+    public Cinema findById(String id) {
+        return entityManager.find(Cinema.class, Long.parseLong(id));
     }
 
     public List<Cinema> findAll() {
@@ -35,5 +35,9 @@ public class CinemaJpaRepository {
 
     public Cinema insert(Cinema cinema) {
         return entityManager.merge(cinema);
+    }
+
+    public void delete(Cinema cinema) {
+        entityManager.remove(entityManager.contains(cinema) ? cinema : entityManager.merge(cinema));
     }
 }

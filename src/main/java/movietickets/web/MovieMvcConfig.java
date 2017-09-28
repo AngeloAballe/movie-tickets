@@ -21,6 +21,7 @@ public class MovieMvcConfig extends WebMvcConfigurerAdapter {
         TilesConfigurer configurer = new TilesConfigurer();
         configurer.setDefinitions(
                 "/WEB-INF/views/tiles.xml",
+                "/WEB-INF/views/cinema/tiles.xml",
                 "/WEB-INF/views/admin/tiles.xml");
         return configurer;
     }
