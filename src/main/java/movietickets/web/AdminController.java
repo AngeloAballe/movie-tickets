@@ -1,5 +1,6 @@
 package movietickets.web;
 
+import movietickets.application.MovieApplicationService;
 import movietickets.domain.model.Cinema;
 import movietickets.domain.model.CinemaJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,20 +28,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class AdminController {
     public static final String PATH = "admin";
 
-    private CinemaJpaRepository cinemaJpaRepository;
+    private MovieApplicationService movieApplicationService;
 
     @Autowired
-    public AdminController(CinemaJpaRepository cinemaJpaRepository) {
-        this.cinemaJpaRepository = cinemaJpaRepository;
-    }
-
-    protected List<Cinema> findAllCinema() {
-        return cinemaJpaRepository.findAll();
+    public AdminController(MovieApplicationService movieApplicationService) {
+        this.movieApplicationService = movieApplicationService;
     }
 
     @RequestMapping(method=GET)
     public String index(Model model) {
-        model.addAttribute("cinemas", findAllCinema());
+        model.addAttribute("cinemas", movieApplicationService.findAllCinema());
         return PATH + "/index";
     }
 
@@ -55,7 +52,7 @@ public class AdminController {
             return PATH + "/add";
         }
 
-        cinemaJpaRepository.insert(cinema);
+        movieApplicationService.addCinema(cinema);
         return "redirect:/" + PATH;
     }
 
