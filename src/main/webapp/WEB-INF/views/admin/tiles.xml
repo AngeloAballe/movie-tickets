@@ -9,4 +9,11 @@
 		<put-attribute name="main" value="/WEB-INF/views/admin/index.jsp" />
 		<put-attribute name="navigationTab" value="admin" />
 	</definition>
+
+	<definition name="admin/add" extends="standardLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="main" value="/WEB-INF/views/admin/add.jsp" />
+		<put-attribute name="navigationTab" value="admin" />
+	</definition>
+
 </tiles-definitions>
