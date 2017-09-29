@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/views/_taglibs.jspf" %>
 
-<spring:url value="/cinema/${cinema.id}/create" var="createCinemaUrl"/>
+<spring:url value="/cinema/create" var="createCinemaUrl"/>
 <form:form action="${createCinemaUrl}" method="post" modelAttribute="cinema">
     <div class="box box-primary">
         <div class="box-header with-border">

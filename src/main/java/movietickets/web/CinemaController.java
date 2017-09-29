@@ -1,13 +1,12 @@
 package movietickets.web;
 
-import movietickets.application.MovieApplicationService;
 import movietickets.domain.model.Cinema;
+import movietickets.infrastructure.jpa.CinemaJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
@@ -24,11 +23,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class CinemaController {
     public static final String PATH = "cinema";
 
-    private MovieApplicationService movieApplicationService;
+    private CinemaJpaRepository cinemaJpaRepository;
 
     @Autowired
-    public CinemaController(MovieApplicationService movieApplicationService) {
-        this.movieApplicationService = movieApplicationService;
+    public CinemaController(CinemaJpaRepository cinemaJpaRepository) {
+        this.cinemaJpaRepository = cinemaJpaRepository;
     }
 
     @ModelAttribute("cinema")
@@ -42,7 +41,7 @@ public class CinemaController {
 
     @ModelAttribute("cinemas")
     protected List<Cinema> listCinemas() {
-        return movieApplicationService.findAllCinema();
+        return cinemaJpaRepository.findAll();
     }
 
     @RequestMapping(method=GET)
@@ -62,7 +61,7 @@ public class CinemaController {
             return PATH + "/add";
         }
 
-        movieApplicationService.addCinema(cinema);
+        cinemaJpaRepository.save(cinema);
         return "redirect:/" + AdminController.PATH;
     }
 }

@@ -1,13 +1,10 @@
 package movietickets.web;
 
-import movietickets.application.MovieApplicationService;
-import movietickets.domain.model.Cinema;
+import movietickets.infrastructure.jpa.CinemaJpaRepository;
+import movietickets.infrastructure.jpa.MovieJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
@@ -24,17 +21,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class AdminController {
     public static final String PATH = "admin";
 
-    private MovieApplicationService movieApplicationService;
+    private CinemaJpaRepository cinemaJpaRepository;
+    private MovieJpaRepository movieJpaRepository;
 
     @Autowired
-    public AdminController(MovieApplicationService movieApplicationService) {
-        this.movieApplicationService = movieApplicationService;
+    public AdminController(CinemaJpaRepository cinemaJpaRepository, MovieJpaRepository movieJpaRepository) {
+        this.cinemaJpaRepository = cinemaJpaRepository;
+        this.movieJpaRepository = movieJpaRepository;
     }
 
     @RequestMapping(method=GET)
     public String index(Model model) {
-        model.addAttribute("cinemas", movieApplicationService.findAllCinema());
-        model.addAttribute("movies", movieApplicationService.findAllMovie());
+        model.addAttribute("cinemas", cinemaJpaRepository.findAll());
+        model.addAttribute("movies", movieJpaRepository.findAll());
         return PATH + "/index";
     }
 }

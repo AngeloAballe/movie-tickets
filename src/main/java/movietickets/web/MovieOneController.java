@@ -1,7 +1,7 @@
 package movietickets.web;
 
-import movietickets.domain.model.Cinema;
-import movietickets.infrastructure.jpa.CinemaJpaRepository;
+import movietickets.domain.model.Movie;
+import movietickets.infrastructure.jpa.MovieJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -18,49 +17,49 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by zeus on 9/29/17.
  */
 @Controller
-@RequestMapping("/" + CinemaController.PATH + "/{id}")
-public class CinemaOneController {
-    public static final String PATH = CinemaController.PATH;
+@RequestMapping("/" + MovieController.PATH + "/{id}")
+public class MovieOneController {
+    public static final String PATH = MovieController.PATH;
 
-    private CinemaJpaRepository cinemaJpaRepository;
+    private MovieJpaRepository movieJpaRepository;
 
     @Autowired
-    public CinemaOneController(CinemaJpaRepository cinemaJpaRepository) {
-        this.cinemaJpaRepository = cinemaJpaRepository;
+    public MovieOneController(MovieJpaRepository movieJpaRepository) {
+        this.movieJpaRepository = movieJpaRepository;
     }
 
-    @ModelAttribute("cinema")
-    protected Cinema findCinema(@PathVariable("id") Long id) {
-        return cinemaJpaRepository.findById(id);
+    @ModelAttribute("movie")
+    protected Movie findMovie(@PathVariable("id") Long id) {
+        return movieJpaRepository.findById(id);
     }
 
     @RequestMapping(method=GET)
-    public String showCinema(Model model) {
+    public String showMovie(Model model) {
         return PATH + "/show";
     }
 
     @RequestMapping(method=GET, path = "/edit")
-    public String editCinema(Model model) {
+    public String editMovie(Model model) {
         return PATH + "/edit";
     }
 
     @RequestMapping(method=POST, path = "/update")
-    public String updateCinema(@ModelAttribute("cinema") Cinema cinema, BindingResult bindingResult) {
+    public String updateMovie(@ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return PATH + "/edit";
         }
 
-        cinemaJpaRepository.save(cinema);
-        return "redirect:/" + PATH + "/" + cinema.getId();
+        movieJpaRepository.save(movie);
+        return "redirect:/" + PATH + "/" + movie.getId();
     }
 
     @RequestMapping(path = "/delete")
-    public String deleteCinema(@ModelAttribute("cinema") Cinema cinema, BindingResult bindingResult) {
+    public String deleteMovie(@ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "redirect:/" + PATH;
         }
 
-        cinemaJpaRepository.delete(cinema);
+        movieJpaRepository.delete(movie);
         return "redirect:/" + PATH;
     }
 }

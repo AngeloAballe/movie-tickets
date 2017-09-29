@@ -4,25 +4,27 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Cinemas</h3>
+                <h3 class="box-title">Movies</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tbody><tr>
-                        <th>Cinema ID</th>
-                        <th>Cinema Name</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Summary</th>
                         <th>Action</th>
                     </tr>
 
-                    <c:forEach var="cinema" items="${cinemas}">
+                    <c:forEach var="movie" items="${movies}">
                         <tr>
-                            <td>C${cinema.id}</td>
-                            <td>${cinema.name}</td>
+                            <td>M${movie.id}</td>
+                            <td>${movie.title}</td>
+                            <td>${movie.summary}</td>
                             <td>
-                                <a href="/cinema/${cinema.id}" class="label label-primary">View</a>
-                                <a href="/cinema/${cinema.id}/edit" class="label label-info">Edit</a>
-                                <a href="/cinema/${cinema.id}/delete" class="label label-danger">Delete</a>
+                                <a href="/movie/${movie.id}" class="label label-primary">View</a>
+                                <a href="/movie/${movie.id}/edit" class="label label-info">Edit</a>
+                                <a href="/movie/${movie.id}/delete" class="label label-danger">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
