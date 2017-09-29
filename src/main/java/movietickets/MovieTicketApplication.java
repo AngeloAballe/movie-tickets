@@ -33,7 +33,7 @@ public class MovieTicketApplication implements CommandLineRunner {
                 {true, true, false, true, true}
         };
 
-        Cinema cinema = new Cinema(seats);
+        Cinema cinema = new Cinema("Cinema First", seats);
 
         movieApplicationService.addCinema(cinema);
 

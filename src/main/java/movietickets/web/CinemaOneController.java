@@ -35,6 +35,11 @@ public class CinemaOneController {
         return movieApplicationService.findCinemaById(id);
     }
 
+    @RequestMapping(method=GET)
+    public String showCinema(Model model) {
+        return PATH + "/show";
+    }
+
     @RequestMapping(method=GET, path = "/edit")
     public String editCinema(Model model) {
         return PATH + "/edit";

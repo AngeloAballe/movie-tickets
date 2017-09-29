@@ -1,6 +1,10 @@
 package movietickets.domain.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 
@@ -21,10 +25,20 @@ public class Cinema {
     @Column( length = 2000 )
     private boolean[][] seats;
 
-    private ArrayList<boolean[]> seats2;
+    @NotBlank
+    private String name;
 
-    public Cinema(boolean[][] seats) {
+    public Cinema(String name, boolean[][] seats) {
+        this.name = name;
         this.seats = seats;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setSeats(boolean[][] seats) {

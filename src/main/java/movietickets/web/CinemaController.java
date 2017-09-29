@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -36,7 +37,17 @@ public class CinemaController {
         for (boolean[] row: seat)
             Arrays.fill(row, true);
 
-        return new Cinema(seat);
+        return new Cinema("", seat);
+    }
+
+    @ModelAttribute("cinemas")
+    protected List<Cinema> listCinemas() {
+        return movieApplicationService.findAllCinema();
+    }
+
+    @RequestMapping(method=GET)
+    public String index(Model model) {
+        return PATH + "/list";
     }
 
     @RequestMapping(method=GET, path = "/create")
