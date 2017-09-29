@@ -73,6 +73,17 @@
 							<li><a href="/movie/create">Add Movie</a></li>
 						</ul>
 					</li>
+					<li class="treeview">
+						<a href="#"><i class="fa fa-link"></i> <span>Movie Schedules</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+						  	</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="/movieSchedule">View All Movie Schedules</a></li>
+							<li><a href="/movieSchedule/create">Add Movie Schedule</a></li>
+						</ul>
+					</li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>

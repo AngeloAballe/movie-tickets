@@ -22,7 +22,7 @@
                             <td>${movieSchedule.cinema.name}</td>
                             <td>${movieSchedule.movie.title}</td>
                             <fmt:parseDate value="${movieSchedule.date}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
-                            <fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="(E) MMMM DD, YYYY" />
+                            <fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="(E) MMMM dd, yyyy" />
                             <td>
                                     ${newParsedDate} <br>
                                     ${movieSchedule.start} - ${movieSchedule.end}
