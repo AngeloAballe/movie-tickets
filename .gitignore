@@ -48,3 +48,5 @@ Servers/
 .idea/
 target/
 movie-tickets.iml
+
+src/main/webapp/bower_components
