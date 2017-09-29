@@ -31,7 +31,7 @@ public class MovieController {
 
     @ModelAttribute("movie")
     protected Movie newMovie() {
-        return new Movie("", "");
+        return new Movie("", "", 0);
     }
 
     @ModelAttribute("movies")

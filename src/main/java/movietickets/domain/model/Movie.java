@@ -23,9 +23,12 @@ public class Movie {
 
     private String summary;
 
-    public Movie(String title, String summary) {
+    private int runningTimeMinutes;
+
+    public Movie(String title, String summary, int runningTimeMinutes) {
         this.title = title;
         this.summary = summary;
+        this.runningTimeMinutes = runningTimeMinutes;
     }
 
     public Long getId() {
@@ -46,6 +49,14 @@ public class Movie {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public int getRunningTimeMinutes() {
+        return runningTimeMinutes;
+    }
+
+    public void setRunningTimeMinutes(int runningTimeMinutes) {
+        this.runningTimeMinutes = runningTimeMinutes;
     }
 
     protected Movie() {

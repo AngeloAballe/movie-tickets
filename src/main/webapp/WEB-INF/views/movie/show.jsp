@@ -15,6 +15,10 @@
             <label for="summary">Summary</label>
             <textarea class="form-control" name="summary" id="summary" cols="30" rows="10" disabled>${movie.summary}</textarea>
         </div>
+        <div class="form-group">
+            <label for="runningTimeMinutes">Running Time in Minutes</label>
+            <input class="form-control" id="runningTimeMinutes" type="text" value="${movie.runningTimeMinutes}" disabled>
+        </div>
     </div>
     <!-- /.box-body -->
     <div class="box-footer text-right">

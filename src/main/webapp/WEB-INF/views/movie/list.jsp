@@ -13,6 +13,7 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Summary</th>
+                        <th>Running Time (Minutes)</th>
                         <th>Action</th>
                     </tr>
 
@@ -21,6 +22,7 @@
                             <td>M${movie.id}</td>
                             <td>${movie.title}</td>
                             <td>${movie.summary}</td>
+                            <td>${movie.runningTimeMinutes}</td>
                             <td>
                                 <a href="/movie/${movie.id}" class="label label-primary">View</a>
                                 <a href="/movie/${movie.id}/edit" class="label label-info">Edit</a>

@@ -40,7 +40,9 @@ public class MovieTicketApplication implements CommandLineRunner {
 
         cinemaJpaRepository.save(cinema);
 
-        Movie movie = new Movie("Inception", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cupiditate explicabo molestiae molestias natus nemo nobis, odit. Accusantium consectetur, culpa dolorem doloribus ducimus fugit harum, impedit inventore, maiores provident voluptatum.");
+        Movie movie = new Movie("Inception",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi cupiditate explicabo molestiae molestias natus nemo nobis, odit. Accusantium consectetur, culpa dolorem doloribus ducimus fugit harum, impedit inventore, maiores provident voluptatum.",
+                120);
 
         movieJpaRepository.save(movie);
     }

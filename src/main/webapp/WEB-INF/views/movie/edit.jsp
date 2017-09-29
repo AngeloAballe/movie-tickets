@@ -18,6 +18,10 @@
                 <label for="summary">Summary</label>
                 <form:textarea path="summary" cssClass="form-control"/>
             </div>
+            <div class="form-group">
+                <label for="runningTimeMinutes">Running Time in Minutes</label>
+                <form:input path="runningTimeMinutes" cssClass="form-control"/>
+            </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-right">
