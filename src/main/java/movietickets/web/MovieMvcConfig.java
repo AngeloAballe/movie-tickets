@@ -23,6 +23,7 @@ public class MovieMvcConfig extends WebMvcConfigurerAdapter {
                 "/WEB-INF/views/tiles.xml",
                 "/WEB-INF/views/cinema/tiles.xml",
                 "/WEB-INF/views/movie/tiles.xml",
+                "/WEB-INF/views/movieSchedule/tiles.xml",
                 "/WEB-INF/views/admin/tiles.xml");
         return configurer;
     }

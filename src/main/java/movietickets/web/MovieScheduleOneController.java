@@ -1,0 +1,74 @@
+package movietickets.web;
+
+import movietickets.domain.model.Movie;
+import movietickets.domain.model.MovieSchedule;
+import movietickets.infrastructure.jpa.CinemaJpaRepository;
+import movietickets.infrastructure.jpa.MovieJpaRepository;
+import movietickets.infrastructure.jpa.MovieScheduleJpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+/**
+ * Created by zeus on 9/29/17.
+ */
+@Controller
+@RequestMapping("/" + MovieScheduleController.PATH + "/{id}")
+public class MovieScheduleOneController {
+    public static final String PATH = MovieScheduleController.PATH;
+
+    private CinemaJpaRepository cinemaJpaRepository;
+    private MovieJpaRepository movieJpaRepository;
+    private MovieScheduleJpaRepository movieScheduleJpaRepository;
+
+    @Autowired
+    public MovieScheduleOneController(CinemaJpaRepository cinemaJpaRepository, MovieJpaRepository movieJpaRepository, MovieScheduleJpaRepository movieScheduleJpaRepository) {
+        this.cinemaJpaRepository = cinemaJpaRepository;
+        this.movieJpaRepository = movieJpaRepository;
+        this.movieScheduleJpaRepository = movieScheduleJpaRepository;
+    }
+
+    @ModelAttribute("movieSchedule")
+    protected MovieSchedule findMovieSchedule(@PathVariable("id") Long id) {
+        return movieScheduleJpaRepository.findById(id);
+    }
+
+    @RequestMapping(method=GET)
+    public String showMovieSchedule(Model model) {
+        return PATH + "/show";
+    }
+
+    @RequestMapping(method=GET, path = "/edit")
+    public String editMovieSchedule(Model model) {
+        model.addAttribute("cinemas", cinemaJpaRepository.findAll());
+        model.addAttribute("movies", movieJpaRepository.findAll());
+        return PATH + "/edit";
+    }
+
+    @RequestMapping(method=POST, path = "/update")
+    public String updateMovieSchedule(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return PATH + "/edit";
+        }
+
+        movieScheduleJpaRepository.save(movieSchedule);
+        return "redirect:/" + PATH + "/" + movieSchedule.getId();
+    }
+
+    @RequestMapping(path = "/delete")
+    public String deleteMovieSchedule(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/" + PATH;
+        }
+
+        movieScheduleJpaRepository.delete(movieSchedule);
+        return "redirect:/" + PATH;
+    }
+}
