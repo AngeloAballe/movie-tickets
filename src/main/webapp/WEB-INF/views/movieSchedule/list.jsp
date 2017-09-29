@@ -14,6 +14,7 @@
                         <th>Cinema</th>
                         <th>Movie</th>
                         <th>Schedule</th>
+                        <th>Available Seats</th>
                         <th>Action</th>
                     </tr>
 
@@ -27,6 +28,7 @@
                                     ${newParsedDate} <br>
                                     ${movieSchedule.start} - ${movieSchedule.end}
                             </td>
+                            <td>${movieSchedule.availableSeatCount}</td>
                             <td>
                                 <a href="/movieSchedule/${movieSchedule.id}" class="label label-primary">View</a>
                                 <a href="/movieSchedule/${movieSchedule.id}/edit" class="label label-info">Edit</a>

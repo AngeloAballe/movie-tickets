@@ -22,6 +22,9 @@ public class MovieSchedule {
     @ManyToOne
     private Cinema cinema;
 
+    @Column( length = 10000 )
+    private Seats[][] seats;
+
     @ManyToOne
     private Movie movie;
 
@@ -57,6 +60,8 @@ public class MovieSchedule {
 
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
+        this.seats = populateSeats(cinema);
+        System.out.println("");
     }
 
     public Movie getMovie() {
@@ -90,5 +95,29 @@ public class MovieSchedule {
 
     public void setEnd(LocalTime end) {
         this.end = end;
+    }
+
+    public int getAvailableSeatCount() {
+        int count = 0;
+        for(int x = 0; x < this.seats.length; x++) {
+            for(int y = 0; y < this.seats[x].length; y++) {
+                if(this.seats[x][y].isEnabled() && !this.seats[x][y].isReserved()) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private Seats[][] populateSeats(Cinema cinema) {
+        boolean[][] cinemaSeats = cinema.getSeats();
+        Seats[][] seatsCopy = new Seats[cinemaSeats.length][cinemaSeats[0].length];
+
+        for(int x = 0; x < cinemaSeats.length; x++) {
+            for(int y = 0; y < cinemaSeats[x].length; y++) {
+                seatsCopy[x][y] = new Seats(cinemaSeats[x][y], false);
+            }
+        }
+        return seatsCopy;
     }
 }
