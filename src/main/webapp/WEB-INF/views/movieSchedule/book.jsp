@@ -5,7 +5,7 @@
 <form:form id="testForm" action="${bookUrl}" method="post" modelAttribute="movieSchedule">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Book</h3>
+            <h3 class="box-title">Book ${error}</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -32,6 +32,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-right">
+            <input type="hidden" name="version2" value="${movieSchedule.version}">
             <button type="submit" class="btn btn-info">Save</button>
         </div>
     </div>

@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -80,9 +81,17 @@ public class MovieScheduleOneController {
     }
 
     @RequestMapping(method=POST, path = "/book")
-    public String bookMovie(@Valid @ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult) {
+    public String bookMovie(@Valid @ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult,  @RequestParam(value = "version2", required=false) Long version2, Model model) {
+        if (movieScheduleJpaRepository.findById(movieSchedule.getId()).getVersion() - 1L != version2) {
+            model.addAttribute("error", "Somebody booked before you! Try Again!");
+            bindingResult.reject("error");
+            return PATH + "/book";
+        }
+
+        System.out.println(movieScheduleJpaRepository.findById(movieSchedule.getId()).getVersion());
+
         if (bindingResult.hasErrors()) {
-            return PATH + "/edit";
+            return PATH + "/book";
         }
 
         movieScheduleJpaRepository.save(movieSchedule);

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -44,7 +45,7 @@ public class MovieSchedule {
     private LocalTime end;
 
     @Version
-    private Integer version;
+    private Long version;
 
     public MovieSchedule(Cinema cinema, Movie movie, LocalDate date, LocalTime start) {
         this.cinema = cinema;
@@ -111,6 +112,45 @@ public class MovieSchedule {
 
     public void setEnd(LocalTime end) {
         this.end = end;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieSchedule that = (MovieSchedule) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (cinema != null ? !cinema.equals(that.cinema) : that.cinema != null) return false;
+        if (!Arrays.deepEquals(seats, that.seats)) return false;
+        if (movie != null ? !movie.equals(that.movie) : that.movie != null) return false;
+        if (date != null ? !date.equals(that.date) : that.date != null) return false;
+        if (start != null ? !start.equals(that.start) : that.start != null) return false;
+        if (end != null ? !end.equals(that.end) : that.end != null) return false;
+        return version != null ? version.equals(that.version) : that.version == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (cinema != null ? cinema.hashCode() : 0);
+        result = 31 * result + Arrays.deepHashCode(seats);
+        result = 31 * result + (movie != null ? movie.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (start != null ? start.hashCode() : 0);
+        result = 31 * result + (end != null ? end.hashCode() : 0);
+        result = 31 * result + (version != null ? version.hashCode() : 0);
+        return result;
     }
 
     public int getAvailableSeatCount() {
