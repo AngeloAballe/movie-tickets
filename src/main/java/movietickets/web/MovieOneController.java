@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -44,7 +46,7 @@ public class MovieOneController {
     }
 
     @RequestMapping(method=POST, path = "/update")
-    public String updateMovie(@ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
+    public String updateMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return PATH + "/edit";
         }

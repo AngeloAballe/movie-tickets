@@ -30,6 +30,7 @@
                             </td>
                             <td>${movieSchedule.availableSeatCount}</td>
                             <td>
+                                <a href="/movieSchedule/${movieSchedule.id}/book" class="label label-success">Book</a>
                                 <a href="/movieSchedule/${movieSchedule.id}" class="label label-primary">View</a>
                                 <a href="/movieSchedule/${movieSchedule.id}/edit" class="label label-info">Edit</a>
                                 <a href="/movieSchedule/${movieSchedule.id}/delete" class="label label-danger">Delete</a>

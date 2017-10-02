@@ -11,16 +11,19 @@
         <!-- form start -->
         <div class="box-body">
             <div class="form-group">
-                <label for="name">Title</label>
+                <label for="title">Title</label>
                 <form:input path="title" cssClass="form-control"/>
+                <form:errors path="title" />
             </div>
             <div class="form-group">
                 <label for="summary">Summary</label>
                 <form:textarea path="summary" cssClass="form-control"/>
+                <form:errors path="summary" />
             </div>
             <div class="form-group">
                 <label for="runningTimeMinutes">Running Time in Minutes</label>
-                <form:input path="runningTimeMinutes" cssClass="form-control"/>
+                <form:input type="number" path="runningTimeMinutes" cssClass="form-control"/>
+                <form:errors path="runningTimeMinutes" />
             </div>
         </div>
         <!-- /.box-body -->

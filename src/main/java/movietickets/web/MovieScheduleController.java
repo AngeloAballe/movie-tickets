@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -57,8 +58,10 @@ public class MovieScheduleController {
     }
 
     @RequestMapping(method=POST, path = "/create")
-    public String saveMovieSchedule(@ModelAttribute("form") MovieSchedule movieSchedule, BindingResult bindingResult) {
+    public String saveMovieSchedule(@Valid @ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("cinemas", cinemaJpaRepository.findAll());
+            model.addAttribute("movies", movieJpaRepository.findAll());
             return PATH + "/add";
         }
 

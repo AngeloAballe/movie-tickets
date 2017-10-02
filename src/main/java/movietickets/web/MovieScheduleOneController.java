@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -53,7 +55,7 @@ public class MovieScheduleOneController {
     }
 
     @RequestMapping(method=POST, path = "/update")
-    public String updateMovieSchedule(@ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult) {
+    public String updateMovieSchedule(@Valid @ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return PATH + "/edit";
         }
@@ -71,4 +73,20 @@ public class MovieScheduleOneController {
         movieScheduleJpaRepository.delete(movieSchedule);
         return "redirect:/" + PATH;
     }
+
+    @RequestMapping(path = "/book")
+    public String bookMovie(@PathVariable("id") Long id, Model model) {
+        return PATH + "/book";
+    }
+
+    @RequestMapping(method=POST, path = "/book")
+    public String bookMovie(@Valid @ModelAttribute("movieSchedule") MovieSchedule movieSchedule, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return PATH + "/edit";
+        }
+
+        movieScheduleJpaRepository.save(movieSchedule);
+        return "redirect:/" + PATH + "/" + movieSchedule.getId() + "/book";
+    }
+
 }

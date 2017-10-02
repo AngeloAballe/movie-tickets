@@ -12,21 +12,25 @@
             <div class="form-group">
                 <label for="cinema">Cinema</label>
                 <form:select path="cinema" items="${cinemas}" itemLabel="name" cssClass="form-control"/>
+                <form:errors path="cinema" />
             </div>
 
             <div class="form-group">
                 <label for="movies">Movie</label>
                 <form:select path="movie" items="${movies}" itemLabel="title" cssClass="form-control"/>
+                <form:errors path="movie" />
             </div>
 
             <div class="form-group">
                 <label for="date">Date</label>
                 <form:input type="date" path="date" cssClass="form-control"/>
+                <form:errors path="date" />
             </div>
 
             <div class="form-group">
                 <label for="time">Time</label>
                 <form:input type="time" path="start" cssClass="form-control"/>
+                <form:errors path="start" />
             </div>
         </div>
         <!-- /.box-body -->

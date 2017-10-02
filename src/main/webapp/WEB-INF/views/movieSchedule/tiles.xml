@@ -27,4 +27,17 @@
 		<put-attribute name="main" value="/WEB-INF/views/movieSchedule/list.jsp" />
 		<put-attribute name="navigationTab" value="admin" />
 	</definition>
+
+	<definition name="movieSchedule/book" extends="standardLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="main" value="/WEB-INF/views/movieSchedule/book.jsp" />
+		<put-attribute name="navigationTab" value="admin" />
+		<put-list-attribute name="css" inherit="true">
+			<add-attribute value="/bower_components/iCheck/skins/all.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="/bower_components/iCheck/icheck.min.js" />
+			<add-attribute value="/js/checkboxes.js" />
+		</put-list-attribute>
+	</definition>
 </tiles-definitions>

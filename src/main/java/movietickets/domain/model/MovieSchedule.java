@@ -1,8 +1,10 @@
 package movietickets.domain.model;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,17 +22,21 @@ public class MovieSchedule {
     private Long id;
 
     @ManyToOne
+    @NotNull
     private Cinema cinema;
 
     @Column( length = 10000 )
     private Seats[][] seats;
 
     @ManyToOne
+    @NotNull
     private Movie movie;
 
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
 
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime start;
 
@@ -61,7 +67,6 @@ public class MovieSchedule {
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
         this.seats = populateSeats(cinema);
-        System.out.println("");
     }
 
     public Movie getMovie() {
@@ -93,6 +98,14 @@ public class MovieSchedule {
         return end;
     }
 
+    public Seats[][] getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Seats[][] seats) {
+        this.seats = seats;
+    }
+
     public void setEnd(LocalTime end) {
         this.end = end;
     }
@@ -101,7 +114,7 @@ public class MovieSchedule {
         int count = 0;
         for(int x = 0; x < this.seats.length; x++) {
             for(int y = 0; y < this.seats[x].length; y++) {
-                if(this.seats[x][y].isEnabled() && !this.seats[x][y].isReserved()) {
+                if(!this.seats[x][y].isReserved()) {
                     count++;
                 }
             }
@@ -111,13 +124,12 @@ public class MovieSchedule {
 
     private Seats[][] populateSeats(Cinema cinema) {
         boolean[][] cinemaSeats = cinema.getSeats();
-        Seats[][] seatsCopy = new Seats[cinemaSeats.length][cinemaSeats[0].length];
-
+        Seats[][] availableSeats = new Seats[cinemaSeats.length][cinemaSeats[0].length];
         for(int x = 0; x < cinemaSeats.length; x++) {
             for(int y = 0; y < cinemaSeats[x].length; y++) {
-                seatsCopy[x][y] = new Seats(cinemaSeats[x][y], false);
+                availableSeats[x][y] = new Seats(cinemaSeats[x][y], false);
             }
         }
-        return seatsCopy;
+        return availableSeats;
     }
 }

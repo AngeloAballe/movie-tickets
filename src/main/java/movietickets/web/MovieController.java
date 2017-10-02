@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -51,7 +52,7 @@ public class MovieController {
 
 
     @RequestMapping(method=POST, path = "/create")
-    public String saveCinema(@ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
+    public String saveCinema(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return PATH + "/add";
         }

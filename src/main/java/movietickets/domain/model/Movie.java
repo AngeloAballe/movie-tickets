@@ -1,9 +1,14 @@
 package movietickets.domain.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 import static javax.persistence.GenerationType.AUTO;
 
@@ -19,11 +24,15 @@ public class Movie {
     @GeneratedValue(strategy = AUTO)
     private Long id;
 
+    @NotBlank
     private String title;
 
+    @NotBlank
     private String summary;
 
-    private int runningTimeMinutes;
+    @NotNull
+    @Range(min=1, max=500)
+    private Integer runningTimeMinutes;
 
     public Movie(String title, String summary, int runningTimeMinutes) {
         this.title = title;
@@ -51,11 +60,11 @@ public class Movie {
         this.summary = summary;
     }
 
-    public int getRunningTimeMinutes() {
+    public Integer getRunningTimeMinutes() {
         return runningTimeMinutes;
     }
 
-    public void setRunningTimeMinutes(int runningTimeMinutes) {
+    public void setRunningTimeMinutes(Integer runningTimeMinutes) {
         this.runningTimeMinutes = runningTimeMinutes;
     }
 

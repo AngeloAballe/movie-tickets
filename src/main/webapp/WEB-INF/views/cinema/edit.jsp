@@ -12,6 +12,7 @@
             <div class="form-group">
                 <label for="name">Cinema Name</label>
                 <form:input path="name" cssClass="form-control"/>
+                <form:errors path="name" />
             </div>
             <div class="form-group">
                 <label for="">Seats</label>
@@ -19,6 +20,7 @@
                     <c:forEach var="seat" items="${cinema.seats}" varStatus="loopX">
                         <c:forEach var="seat0" items="${seat}" varStatus="loopY">
                             <form:checkbox path="seats[${loopX.index}][${loopY.index}]" /> &nbsp;
+                            <form:errors path="seats[${loopX.index}][${loopY.index}]" />
                         </c:forEach>
                         <br>
                     </c:forEach>
