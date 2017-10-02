@@ -14,6 +14,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class PageController {
     @RequestMapping(method=GET)
     public String index(Model model) {
-        return "index";
+        return "redirect:dashboard";
     }
 }

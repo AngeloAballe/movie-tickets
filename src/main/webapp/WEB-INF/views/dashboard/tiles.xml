@@ -4,9 +4,9 @@
 		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="admin/index" extends="standardLayout">
+	<definition name="dashboard/index" extends="standardLayout">
 		<put-attribute name="title" value="Admin" />
-		<put-attribute name="main" value="/WEB-INF/views/admin/index.jsp" />
+		<put-attribute name="main" value="/WEB-INF/views/dashboard/index.jsp" />
 		<put-attribute name="navigationTab" value="admin" />
 	</definition>
 </tiles-definitions>

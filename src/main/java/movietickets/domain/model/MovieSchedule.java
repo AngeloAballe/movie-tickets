@@ -43,6 +43,9 @@ public class MovieSchedule {
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime end;
 
+    @Version
+    private Integer version;
+
     public MovieSchedule(Cinema cinema, Movie movie, LocalDate date, LocalTime start) {
         this.cinema = cinema;
         this.movie = movie;
@@ -114,7 +117,7 @@ public class MovieSchedule {
         int count = 0;
         for(int x = 0; x < this.seats.length; x++) {
             for(int y = 0; y < this.seats[x].length; y++) {
-                if(!this.seats[x][y].isReserved()) {
+                if(!this.seats[x][y].isReserved() && this.seats[x][y].isEnabled()) {
                     count++;
                 }
             }

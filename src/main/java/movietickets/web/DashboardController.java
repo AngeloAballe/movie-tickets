@@ -7,25 +7,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Created by zeus on 9/28/17.
  */
 
 @Controller
-@RequestMapping("/" + AdminController.PATH)
-public class AdminController {
-    public static final String PATH = "admin";
+@RequestMapping("/" + DashboardController.PATH)
+public class DashboardController {
+    public static final String PATH = "dashboard";
 
     private CinemaJpaRepository cinemaJpaRepository;
     private MovieJpaRepository movieJpaRepository;
 
     @Autowired
-    public AdminController(CinemaJpaRepository cinemaJpaRepository, MovieJpaRepository movieJpaRepository) {
+    public DashboardController(CinemaJpaRepository cinemaJpaRepository, MovieJpaRepository movieJpaRepository) {
         this.cinemaJpaRepository = cinemaJpaRepository;
         this.movieJpaRepository = movieJpaRepository;
     }

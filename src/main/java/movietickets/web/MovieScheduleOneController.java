@@ -86,7 +86,7 @@ public class MovieScheduleOneController {
         }
 
         movieScheduleJpaRepository.save(movieSchedule);
-        return "redirect:/" + PATH + "/" + movieSchedule.getId() + "/book";
+        return "redirect:/" + PATH + "/";
     }
 
 }

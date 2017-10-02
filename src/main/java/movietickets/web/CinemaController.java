@@ -63,6 +63,6 @@ public class CinemaController {
         }
 
         cinemaJpaRepository.save(cinema);
-        return "redirect:/" + AdminController.PATH;
+        return "redirect:/" + DashboardController.PATH;
     }
 }
